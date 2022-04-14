@@ -149,6 +149,14 @@ table {
   font-family: 'Roboto', sans-serif;
 }
 
+.sort-title {
+  margin-right: 6%;
+}
+.sorting {
+  display: flex;
+  width: 25%;
+}
+
 .album-container {
   width: 50%;
   display: flex;

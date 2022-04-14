@@ -1,25 +1,51 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Albums.css";
 import data from "../albums.json";
 
 const Albums = () => {
   const [albums, setAlbums] = useState(data);
 
+  useEffect(() => {
+    console.log(albums);
+  }, [albums]);
+
   const handleDelete = (title) => {
     setAlbums(albums.filter((data) => data.title !== title));
+  };
+
+  const sort = (e) => {
+    const choice = e.target.value;
+    return choice === "Artist Name"
+      ? setAlbums((album) => [
+          ...album.sort((a, b) => a.artist.localeCompare(b.artist)),
+        ])
+      : choice === "Album Name"
+      ? setAlbums((album) => [
+          ...album.sort((a, b) => a.title.localeCompare(b.title)),
+        ])
+      : choice === "Default"
+      ? setAlbums(() => [...data])
+      : albums;
   };
 
   return (
     <>
       <div className='middle-section'>
-        <div className='title-container'>
-          <h1 className='title'>Your music</h1>
-          <select>
-            <option>Sort By</option>
-            <option>Artist Name</option>
-            <option>Album Name</option>
-          </select>
-        </div>
+        {albums.length ? (
+          <div className='title-container'>
+            <h1 className='title'>Your music</h1>
+            <div className='sorting'>
+              <p className='sort-title'>Sort by</p>
+              <select onChange={sort}>
+                <option value='Default'>Default</option>
+                <option value='Artist Name'>Artist Name</option>
+                <option value='Album Name'>Album Name</option>
+              </select>
+            </div>
+          </div>
+        ) : (
+          <h2>No music available</h2>
+        )}
         <div className='album-container'>
           {albums.map((album, index) => (
             <div key={index} className='album'>

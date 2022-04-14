@@ -17,6 +17,9 @@ const Albums = () => {
         <div className='album-container'>
           {data.map((album) => (
             <div className='album'>
+              <div className='delete-container'>
+                <span className='delete'>&#10060;</span>
+              </div>
               <img className='artwork' src={album.artworkUrl} alt='' />
               <h2 className='album-title'>{album.title}</h2>
               <h2 className='album-artist'>{album.artist}</h2>

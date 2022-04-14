@@ -1,8 +1,14 @@
-import React from 'react';
-import './Albums.css';
-import data from '../albums.json';
+import React, { useState } from "react";
+import "./Albums.css";
+import data from "../albums.json";
 
 const Albums = () => {
+  const [albums, setAlbums] = useState(data);
+
+  const handleDelete = (title) => {
+    setAlbums(albums.filter((data) => data.title !== title));
+  };
+
   return (
     <>
       <div className='middle-section'>
@@ -15,10 +21,15 @@ const Albums = () => {
           </select>
         </div>
         <div className='album-container'>
-          {data.map((album) => (
-            <div className='album'>
+          {albums.map((album, index) => (
+            <div key={index} className='album'>
               <div className='delete-container'>
-                <span className='delete'>&#10060;</span>
+                <span
+                  onClick={() => handleDelete(album.title)}
+                  className='delete'
+                >
+                  &#10060;
+                </span>
               </div>
               <img className='artwork' src={album.artworkUrl} alt='' />
               <h2 className='album-title'>{album.title}</h2>

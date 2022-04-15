@@ -155,6 +155,7 @@ body {
 
 .sort-title {
   margin-right: 6%;
+  font-family: 'Roboto', sans-serif;
 }
 .sorting {
   display: flex;
@@ -212,6 +213,7 @@ body {
   color: #fff;
   text-align: center;
   font-size: .7rem;
+  font-family: 'Roboto', sans-serif;
 }
 
 

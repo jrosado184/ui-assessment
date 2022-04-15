@@ -1,13 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import "./Albums.css";
 import data from "../albums.json";
 
 const Albums = () => {
   const [albums, setAlbums] = useState(data);
 
-  useEffect(() => {
-    console.log(albums);
-  }, [albums]);
+  const AltAttributes = (num) => {
+    const title = albums[num].artworkUrl.toString().split("/");
+    return title[title.length - 1];
+  };
 
   const handleDelete = (title) => {
     setAlbums(albums.filter((data) => data.title !== title));
@@ -23,9 +24,7 @@ const Albums = () => {
       ? setAlbums((album) => [
           ...album.sort((a, b) => a.title.localeCompare(b.title)),
         ])
-      : choice === "Default"
-      ? setAlbums(() => [...data])
-      : albums;
+      : null;
   };
 
   return (
@@ -37,9 +36,9 @@ const Albums = () => {
             <div className='sorting'>
               <p className='sort-title'>Sort by</p>
               <select onChange={sort}>
-                <option value='Default'>Default</option>
-                <option value='Artist Name'>Artist Name</option>
-                <option value='Album Name'>Album Name</option>
+                <option>select</option>
+                <option value='Artist Name'>Artist</option>
+                <option value='Album Name'>Album</option>
               </select>
             </div>
           </div>
@@ -57,7 +56,11 @@ const Albums = () => {
                   &#10060;
                 </span>
               </div>
-              <img className='artwork' src={album.artworkUrl} alt='' />
+              <img
+                className='artwork'
+                src={album.artworkUrl}
+                alt={AltAttributes(index)}
+              />
               <h2 className='album-title'>{album.title}</h2>
               <h2 className='album-artist'>{album.artist}</h2>
             </div>

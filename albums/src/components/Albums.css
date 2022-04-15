@@ -146,11 +146,14 @@ body {
   width: 46%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .title {
   font-weight: bold;
   font-family: 'Roboto', sans-serif;
+  font-size: 1.2rem;
+  margin-bottom: 1%;
 }
 
 .sort-title {
@@ -160,6 +163,8 @@ body {
 .sorting {
   display: flex;
   width: 25%;
+  align-items: center;
+  justify-content: center;
 }
 
 .album-container {
@@ -167,7 +172,6 @@ body {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  margin-top: 1%;
 }
 
 .delete-container {
